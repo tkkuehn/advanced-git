@@ -1,0 +1,31 @@
+---
+name: Check code quality
+on:
+  push
+jobs:
+  quality:
+    name: Lint code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@master
+      - name: Setup python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.4.2
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root --with dev
+      - name: isort
+        run: poetry run isort -c advanced_git
+      - name: black
+        run: poetry run black --check advanced_git
+      - name: pylint
+        run: poetry run pylint advanced_git
+      - name: pyright
+        run: poetry run pyright advanced_git
