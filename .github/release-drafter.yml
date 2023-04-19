@@ -1,0 +1,7 @@
+---
+template: |
+  # What's changed
+
+  $CHANGES
+version-resolver:
+  default: major
