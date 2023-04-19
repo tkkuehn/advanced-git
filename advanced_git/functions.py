@@ -8,4 +8,4 @@ def add_one(num: float) -> float:
 
 def add_two(num: float) -> float:
     """Add two to a given number."""
-    return num + "2"
+    return num + 2
